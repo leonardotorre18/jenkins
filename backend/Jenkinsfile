@@ -1,16 +1,25 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'node'
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Install') {
             steps {
-                git url: 'https://github.com/leonardotorre18/jenkins.git'
+                git branch: 'main', url: 'https://github.com/leonardotorre18/jenkins.git'
+                dir('backend') {
+                    sh 'npm ci'
+                }
             }
         }
         stage('Run Application') {
             steps {
-                sh 'npm install'
-                sh 'npm start'
+                dir('backend') {
+                    sh 'npm start'
+
+                }
             }
         }
     }
