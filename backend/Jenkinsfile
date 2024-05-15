@@ -14,11 +14,10 @@ pipeline {
                 }
             }
         }
-        stage('Run Application') {
+        stage('Building') {
             steps {
                 dir('backend') {
-                    sh 'npm start'
-
+                    sh 'npm run build'
                 }
             }
         }
