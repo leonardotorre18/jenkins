@@ -21,5 +21,13 @@ pipeline {
                 }
             }
         }
+        stage(' Start ') {
+            steps {
+                dir('backend') {
+                    sh 'npm i -g pm2'
+                    sh 'pm2 start dist/main.js'
+                }
+            }
+        }
     }
 }
